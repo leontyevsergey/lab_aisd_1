@@ -134,12 +134,30 @@ public:
 	{
 		Node* p = _head;
 		cout << "f(x)=";
-		while (p) {
-			if (p->next != NULL) {
-				out << p->coef << "x^" << p->deg << "+";
+		while (p)
+		{
+			if (p->next != NULL)
+			{
+				if (p->deg == 0)
+					out << p->coef << "+";
+
+				if (p->deg == 1)
+					out << p->coef << "x" << "+";
+
+				if (p->deg != 0 && p->deg != 1)
+					out << p->coef << "x^" << p->deg << "+";
 			}
 			else
-				out << p->coef << "x^" << p->deg << endl;
+			{
+				if (p->deg == 0)
+					out << p->coef << endl;
+
+				if (p->deg == 1)
+					out << p->coef << "x" << endl;
+
+				if (p->deg != 0 && p->deg != 1)
+					out << p->coef << "x^" << p->deg << endl;
+			}
 			p = p->next;
 		}
 		return out;
