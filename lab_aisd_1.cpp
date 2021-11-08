@@ -89,6 +89,27 @@ public:
 		}
 	}
 
+	Polynomial operator +(const Polynomial& v) {
+		Node* l = _head;
+		Polynomial res = v;
+		while (l) {
+			int a = 0;
+			Node* p = res._head;
+			while (p) {
+				if (p->deg == l->deg) {
+					res.setCoef(l->deg, p->coef + l->coef);
+					a = 1;
+					break;
+				}
+				p = p->next;
+			}
+			if (a == 0)
+				res.setCoef(l->deg, l->coef);
+			l = l->next;
+		}
+		return res;
+	}
+
 	Polynomial operator *(const double i) {
 		Node* l = _head;
 		Polynomial res;
