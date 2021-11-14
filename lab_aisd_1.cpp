@@ -1,23 +1,11 @@
 ﻿#include<iostream>
+#include"lab_aisd_1.h"
 
 using namespace std;
 
-class Polynomial 
-{
-	struct Node 
-	{
-		int deg;
-		double coef;
-		Node* next;
+	Polynomial :: Polynomial() : _head(nullptr) { }
 
-		Node(int deg, double coef, Node* next = nullptr) :deg(deg), coef(coef), next(next) { }
-	};
-
-	Node* _head;
-public:
-	Polynomial() : _head(nullptr) { }
-
-	Polynomial(const Polynomial& v) : _head(nullptr) 
+	Polynomial :: Polynomial(const Polynomial& v) : _head(nullptr) 
 	{
 		Node* h = v._head;
 		while (h) 
@@ -27,12 +15,12 @@ public:
 		}
 	}
 
-	~Polynomial() 
+	Polynomial :: ~Polynomial()
 	{
 		clear();
 	}
 
-	Polynomial& operator=(const Polynomial& v) 
+	Polynomial& Polynomial :: operator=(const Polynomial& v)
 	{ 
 		this->clear();
 		Node* h = v._head;
@@ -44,7 +32,7 @@ public:
 		return *this;
 	}
 
-	double operator[](int deg) const 
+	double Polynomial :: operator[](int deg) const 
 	{
 		Node* p = _head;
 		while (p) 
@@ -56,7 +44,7 @@ public:
 		return 0;
 	}
 
-	void setCoef(int deg, double coef) 
+	void Polynomial :: setCoef(int deg, double coef)
 	{
 		if (deg < 0)
 			throw "enter degree >= 0!";
@@ -95,7 +83,7 @@ public:
 		}
 	}
 
-	void clear() 
+	void Polynomial :: clear() 
 	{
 		while (_head) 
 		{
@@ -105,7 +93,7 @@ public:
 		}
 	}
 
-	Polynomial operator +(const Polynomial& v) 
+	Polynomial Polynomial :: operator +(const Polynomial& v) 
 	{
 		Node* l = _head;
 		Polynomial res = v;
@@ -130,7 +118,7 @@ public:
 		return res;
 	}
 
-	Polynomial operator *(const double i) 
+	Polynomial Polynomial :: operator *(const double i) 
 	{
 		Node* l = _head;
 		Polynomial res;
@@ -142,7 +130,7 @@ public:
 		return res;
 	}
 
-	double calculate(const double x) const
+	double Polynomial :: calculate(const double x) const
 	{
 		double a = 0;
 		Node* p = _head;
@@ -154,7 +142,7 @@ public:
 		return a;
 	}
 
-	ostream& operator <<(ostream& out)
+	ostream& Polynomial :: operator <<(ostream& out)
 	{
 		Node* p = _head;
 		cout << "f(x)=";
@@ -186,49 +174,5 @@ public:
 		}
 		return out;
 	}
-
-	friend void operator!=(const Polynomial& v, const Polynomial& u)
-	{
-		int test = 0;
-		Polynomial a = v - u;
-		Node* h = a._head;
-		while (h) {
-			if (h->coef != 0) 
-			{
-				cout << "different polynomials" << endl;
-				test = 1;
-				break;
-			}
-			h = h->next;
-		}
-		if (test == 0) 
-			cout << "Same polynomials" << endl;
-	}
-
-	friend Polynomial operator -(const Polynomial& v, const Polynomial& u) 
-	{
-		Node* l = u._head;
-		Polynomial res = v;
-		while (l) 
-		{
-			int a = 0;
-			Node* p = res._head;
-			while (p)
-			{
-				if (p->deg == l->deg) 
-				{
-					res.setCoef(l->deg, p->coef - l->coef);
-					a = 1;
-					break;
-				}
-				p = p->next;
-			}
-			if (a == 0) 
-				res.setCoef(l->deg, -(l->coef));
-			l = l->next;
-		}
-		return res;
-	}
-};
 
 int main() {}
