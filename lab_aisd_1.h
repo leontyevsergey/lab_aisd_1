@@ -28,7 +28,16 @@ public:
 	Polynomial operator *(const double i);
 	double calculate(const double x) const;
 	ostream& operator <<(ostream& out);
-	friend void operator!=(const Polynomial& v, const Polynomial& u)
+	bool operator !() const
+	{
+		Node* p = _head;
+		if (p)
+			return 0;
+		else
+			return 1;
+	}
+
+	friend void operator==(const Polynomial& v, const Polynomial& u)
 	{
 		int test = 0;
 		Polynomial a = v - u;

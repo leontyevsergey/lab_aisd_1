@@ -175,4 +175,25 @@ using namespace std;
 		return out;
 	}
 
-int main() {}
+	int main() {
+		Polynomial a;
+		Polynomial b;
+		a.setCoef(2, 5);
+		
+		
+		a << cout;
+		b << cout << endl;
+		a == b;
+
+		cout << !a << endl;
+		cout << !b << endl;
+
+		a + b << cout;
+		a - b << cout;
+		a * 3.5 << cout;
+		a * 2 << cout;
+		b * 3.5 << cout << endl ;
+		cout << "f(2)=" << a.calculate(2) << endl;
+		cout << a[2] << endl;
+		return 0;
+	}
