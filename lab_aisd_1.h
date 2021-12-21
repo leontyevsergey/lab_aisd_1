@@ -28,13 +28,10 @@ public:
 	Polynomial operator *(const double i);
 	double calculate(const double x) const;
 	ostream& operator <<(ostream& out);
+	Polynomial operator ++();
 	bool operator !() const
 	{
-		Node* p = _head;
-		if (p)
-			return 0;
-		else
-			return 1;
+		return _head == 0 ? true : false;
 	}
 
 	friend void operator==(const Polynomial& v, const Polynomial& u)
