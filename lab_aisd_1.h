@@ -29,6 +29,7 @@ public:
 	double calculate(const double x) const;
 	ostream& operator <<(ostream& out);
 	Polynomial operator ++();
+	Polynomial operator ++(int val);
 	bool operator !() const
 	{
 		return _head == 0 ? true : false;

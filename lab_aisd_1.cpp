@@ -183,6 +183,15 @@ using namespace std;
 		return *this;
 	}
 
+	Polynomial Polynomial :: operator ++(int val)
+	{
+		Polynomial temp(*this);
+		Node* p = _head;
+		if (p->deg == 0)
+			p->coef++;
+		return temp;
+	}
+
 	int main() {
 		Polynomial a;
 		Polynomial b;
@@ -197,7 +206,7 @@ using namespace std;
 		cout << !a << endl;
 		cout << !b << endl;
 
-		++a << cout << endl; 
+		a++ << cout << endl; 
 		++b << cout << endl;
 
 		++(a + b) << cout;
